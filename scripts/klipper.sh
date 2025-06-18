@@ -388,11 +388,12 @@ function write_example_printer_cfg() {
   local gcodes_dir=${2}
   local cfg_template
 
-  cfg_template="${KIAUH_SRCDIR}/resources/example.printer.cfg"
-
+  cfg_template="${KLIPPER_DIR}/config/flsun-retrofit/current/T1/printer.cfg"
+  cfg_template2="${KLIPPER_DIR}/config/flsun-retrofit/current/*.*"
   status_msg "Creating minimal example printer.cfg ..."
   if cp "${cfg_template}" "${cfg}"; then
     sed -i "s|%GCODES_DIR%|${gcodes_dir}|" "${cfg}"
+    cp "${cfg_template2}" "${cfg}"
     ok_msg "Minimal example printer.cfg created!"
   else
     error_msg "Couldn't create minimal example printer.cfg!"
